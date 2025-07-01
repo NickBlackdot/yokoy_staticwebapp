@@ -1,12 +1,19 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css'],
 })
-export class App {
-  protected title = 'client';
+export class AppComponent {
+  constructor(private users: UserService) {}
+
+  remove(id: string) {
+    this.users.inactivate(id).subscribe({
+      next: () => alert(`User ${id} inactivated ✅`),
+      error: err => alert('Request failed: ' + err.status),
+    });
+  }
 }
