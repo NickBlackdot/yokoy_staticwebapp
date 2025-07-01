@@ -53,12 +53,12 @@ export class AppComponent {
   constructor(){ this.refresh(); }
 
   refresh(){
-    this.api.list().subscribe(u => this.users = u);
+    this.api.list().subscribe((u: User[]) => this.users = u);
   }
 
   run(){
     if (this.action) {
-      this.api.bulk(this.action, this.selected).subscribe(res=>{
+      this.api.bulk(this.action, this.selected).subscribe((res: any) => {
       const ok   = res.items.filter((i:any)=>i.status==='ok').length;
       const fail = res.items.length - ok;
       this.sb.open(`${ok} OK, ${fail} failed`, 'Close', {duration:4000});
