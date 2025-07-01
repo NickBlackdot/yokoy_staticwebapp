@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 
 import { MatSnackBar }       from '@angular/material/snack-bar';
 import { MatSelectModule }   from '@angular/material/select';
+import { MatFormFieldModule }from '@angular/material/form-field';
 import { MatButtonModule }   from '@angular/material/button';
 import { FormsModule }       from '@angular/forms';
 import { MatSnackBarModule }   from '@angular/material/snack-bar';
@@ -17,6 +18,7 @@ import { UserTableComponent } from './user-table.component';
     CommonModule,
     FormsModule,
     MatSelectModule,
+    MatFormFieldModule,
     MatButtonModule,
     MatSnackBarModule,
     UserTableComponent
@@ -28,12 +30,14 @@ import { UserTableComponent } from './user-table.component';
             (selectionChange)="selected = $event">
 </user-table>
 
-<div style="margin-top:20px">
-  <mat-select [(ngModel)]="action" placeholder="Action">
-    <mat-option value="inactivate">Inactivate</mat-option>
-    <mat-option value="delete">Delete</mat-option>
-  </mat-select>
-
+<div style="margin-top:24px">
+    <mat-form-field appearance="fill" style="width:220px">
+      <mat-label>Action</mat-label>
+      <mat-select [(ngModel)]="action">
+      <mat-option value="inactivate">Inactivate</mat-option>
+      <mat-option value="delete">Delete</mat-option>
+      </mat-select>
+    </mat-form-field>
   <button mat-raised-button color="primary"
           (click)="run()" [disabled]="!selected.length || !action">
     Run on {{selected.length}} user(s)
