@@ -8,11 +8,18 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  /** Soft-delete (inactivate) a user by ID */
+/** Soft-delete user via POST body */
   inactivate(id: string) {
-    // 🔴 remove “${this.suffix}”
-    return this.http.delete(`${this.base}/${id}`, {
-      observe: 'response',
-    });
+    const body = {
+      action: 'inactivate',
+      org_id: 'ky6IdK9ph',      // ← put the real org id here
+      user_ids: [id]
+    };
+
+    return this.http.post(
+      `${environment.apiBase}/api/users`,
+      body,
+      { observe: 'response' }
+    );
   }
 }
