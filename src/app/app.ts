@@ -42,6 +42,9 @@ import { UserTableComponent } from './user-table.component';
           (click)="run()" [disabled]="!selected.length || !action">
     Run on {{selected.length}} user(s)
   </button>
+  <button mat-button style="margin-left:12px" (click)="refresh()">
+    Refresh list
+  </button>
 </div>
 `,
 
