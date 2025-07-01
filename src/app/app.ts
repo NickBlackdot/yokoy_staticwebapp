@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { provideHttpClient } from '@angular/common/http';
+
 import { MatSnackBar }       from '@angular/material/snack-bar';
 import { MatSelectModule }   from '@angular/material/select';
 import { MatButtonModule }   from '@angular/material/button';
@@ -40,7 +40,7 @@ import { UserTableComponent } from './user-table.component';
   </button>
 </div>
 `,
-  providers: [provideHttpClient()]
+
 })
 export class AppComponent {
   private api = inject(UserService);
